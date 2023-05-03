@@ -1,17 +1,17 @@
 # Prompt Applications
 
-In this guide we will cover some advanced and interesting ways we can use prompt engineering to perform useful and more advanced tasks. 
+In this guide, we will cover some advanced and interesting ways we can use prompt engineering to perform useful and more advanced tasks. 
 
 **Note that this section is under heavy development.**
 Topics:
 - [Generating Data](#generating-data)
-- [Code as Reasoning](#pal-program-aided-language-models-code-as-reasoning)
+- [Program-Aided Language Models](#pal-program-aided-language-models)
 - [Python Notebooks](#python-notebooks)
 
 
 ---
 ## Generating Data
-LLMs have strong capabilities to generate text. Using effective prompt strategies can steer the model to produce better, consistency, and more factual responses. LLMs can also especially useful for generating data which is really useful to run all sorts of experiments. For example, we can use it to generate quick samples for a sentiment classifier like so:
+LLMs have strong capabilities to generate text. Using effective prompt strategies can steer the model to produce better, more consistent, and more factual responses. LLMs can also be especially useful for generating data which is useful to run all sorts of experiments. For example, we can use it to generate quick samples for a sentiment classifier like so:
 
 *Prompt:*
 ```
@@ -53,19 +53,67 @@ Q: I just got some terrible news.
 A: Negative
 ```
 
-This is very useful. We actually use this example for a different test in another section of the guides.
+This is very useful. We use this example for a different test in another section of the guides.
 
+Here is another prompt example showing how to leverage the LLM for data labeling/augmentation task.
+
+*Prompt:*
+```
+produce 3 wine reviews and label taste, flavor, aroma related token; present the result as a json file, in addition add the coordinate of each term for NER task
+```
+
+*Output:*
+```
+[
+  {
+    "review": "This Chardonnay has a rich, creamy texture with notes of vanilla and buttery oak. The taste is smooth and well-balanced, with a hint of tropical fruit on the finish.",
+    "tokens": [
+      {"text": "rich", "label": "flavor", "start": 5, "end": 9},
+      {"text": "creamy", "label": "texture", "start": 10, "end": 16},
+      {"text": "vanilla", "label": "flavor", "start": 28, "end": 35},
+      {"text": "buttery", "label": "flavor", "start": 40, "end": 47},
+      {"text": "oak", "label": "aroma", "start": 48, "end": 51},
+      {"text": "smooth", "label": "taste", "start": 61, "end": 67},
+      {"text": "well-balanced", "label": "taste", "start": 68, "end": 81},
+      {"text": "hint", "label": "flavor", "start": 89, "end": 93},
+      {"text": "tropical fruit", "label": "flavor", "start": 98, "end": 112},
+      {"text": "finish", "label": "taste", "start": 116, "end": 122}
+    ]
+  },
+  {
+    "review": "This Cabernet Sauvignon has a bold, full-bodied flavor with notes of black cherry and dark chocolate. The aroma is rich and complex, with hints of tobacco and leather.",
+    "tokens": [
+      {"text": "bold", "label": "flavor", "start": 5, "end": 9},
+      {"text": "full-bodied", "label": "texture", "start": 10, "end": 21},
+      {"text": "black cherry", "label": "flavor", "start": 30, "end": 42},
+      {"text": "dark chocolate", "label": "flavor", "start": 47, "end": 60},
+      {"text": "rich", "label": "aroma", "start": 69, "end": 73},
+      {"text": "complex", "label": "aroma", "start": 78, "end": 85},
+      {"text": "hints", "label": "aroma", "start": 90, "end": 96},
+      {"text": "tobacco", "label": "aroma", "start": 101, "end": 108},
+      {"text": "leather", "label": "aroma", "start": 113, "end": 120}
+    ]
+  },
+  {
+    "review": "This Riesling has a crisp, refreshing taste with notes of green apple and honey. The aroma is floral and fruity, with a hint of citrus.",
+    "tokens": [
+      {"text": "crisp", "label": "texture", "start": 5, "end": 10},
+      {"text": "refreshing", "label": "texture", "start": 12, "end": 22},
+      {"text": "green apple", "label": "flavor", "start": 31, "end": 42},
+    ]
+  }
+```
 ---
 
-## PAL (Program-Aided Language Models): Code as Reasoning
+## PAL (Program-Aided Language Models)
  
-[Gao et al., (2022)](https://arxiv.org/abs/2211.10435) presents a method that uses LLMs to read natural language problems and generate programs as the intermediate reasoning steps. Coined, program-aided language models (PAL), it differs from chain-of-thought prompting in that instead of using free-form text to obtain solution it offloads the solution step to a programmatic runtime such as a Python interpreter.
+[Gao et al., (2022)](https://arxiv.org/abs/2211.10435) presents a method that uses LLMs to read natural language problems and generate programs as the intermediate reasoning steps. Coined, program-aided language models (PAL), differ from chain-of-thought prompting in that instead of using free-form text to obtain a solution it offloads the solution step to a programmatic runtime such as a Python interpreter.
 
 ![](../img/pal.png)
 
 Let's look at an example using LangChain and OpenAI GPT-3. We are interested to develop a simple application that's able to interpret the question being asked and provide an answer by leveraging the Python interpreter. 
 
-Specifically, we are interested to create a functionality that allows the use of the LLM to answer questions that require date understanding. We will provide the LLM a prompt that includes a few exemplars which are adopted from [here](https://github.com/reasoning-machines/pal/blob/main/pal/prompt/date_understanding_prompt.py).  
+Specifically, we are interested to create a function that allows the use of the LLM to answer questions that require date understanding. We will provide the LLM a prompt that includes a few exemplars that are adopted from [here](https://github.com/reasoning-machines/pal/blob/main/pal/prompt/date_understanding_prompt.py).  
 
 These are the imports we need:
 
@@ -163,7 +211,7 @@ This will output the following: `02/27/1998`
 
 |Description|Notebook|
 |--|--|
-|Learn how to use code as reasoning for solving common tasks using the Python interpreter in combination with the language model.|[PAL: Code as Reasoning](../notebooks/pe-pal.ipynb)|
+|Learn how to use the Python interpreter in combination with the language model to solve tasks.|[Program-Aided Language Models](../notebooks/pe-pal.ipynb)|
 
 ---
 

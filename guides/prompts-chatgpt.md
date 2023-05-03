@@ -13,16 +13,16 @@ Topics:
 ---
 ## ChatGPT Introduction
 
-ChatGPT is a new model [trained by OpenAI](https://openai.com/blog/chatgpt) that has the capability to interact in a conversational way. This model is trained to follow instructions in a prompt to provide appropriate responses in the context of a dialogue. ChatGPT can help with answering questions, suggest recipes, write lyrics in a certain style, generate code, and much more.
+ChatGPT is a new model [trained by OpenAI](https://openai.com/blog/chatgpt) that can interact conversationally. This model is trained to follow instructions in a prompt to provide appropriate responses in the context of a dialogue. ChatGPT can help with answering questions, suggesting recipes, writing lyrics in a certain style, generating code, and much more.
 
 ChatGPT is trained using Reinforcement Learning from Human Feedback (RLHF). While this model is a lot more capable than previous GPT iterations (and also trained to reduce harmful and untruthful outputs), it still comes with limitations. Let's cover some of the capabilities and limitations with concrete examples. 
 
-You can use the research preview of ChatGPT [here](chat.openai.com) but for the examples below we will use the `Chat` mode on the OpenAI Playground.
+You can use the research preview of ChatGPT [here](https://chat.openai.com) but for the examples below we will use the `Chat` mode on the OpenAI Playground.
 
 ---
 ## Reviewing The Conversation Task
 
-In one of the previous guides, we covered a bit about conversation capabilities and role prompting. We covered how to instruct the LLM to have a conversation in a specific style, with a specific intent, behavior, and identity.
+In one of the [previous guides](https://github.com/dair-ai/Prompt-Engineering-Guide/blob/main/guides/prompts-basic-usage.md#conversation), we covered a bit about conversation capabilities and role prompting. We covered how to instruct the LLM to have a conversation in a specific style, with a specific intent, behavior, and identity.
 
 Let's review our previous basic example where we created a conversational system that's able to generate more technical and scientific responses to questions. 
 
@@ -40,7 +40,7 @@ From the example above, you can see two important components:
 - the **intent** or explanation of what the chatbot is
 - the **identity** which instructs the style or tone the chatbot will use to respond
 
-The simple example above works well with the text completion APIs that uses `text-davinci-003`. More recently, OpenAI [announced the ChatGPT APIs](https://openai.com/blog/introducing-chatgpt-and-whisper-apis), which is a more powerful and cheaper model called `gpt-3.5-turbo` was specifically built for this type of functionality (chat completions). In fact, OpenAI recommends this is as their best model even for non-chat use cases.  Other benefits of using the ChatGPT APIs are the significant cost reduction (90%) and efficiency. 
+The simple example above works well with the text completion APIs that use `text-davinci-003`. More recently, OpenAI [announced the ChatGPT APIs](https://openai.com/blog/introducing-chatgpt-and-whisper-apis), which is a more powerful and cheaper model called `gpt-3.5-turbo` was specifically built for this type of functionality (chat completions). OpenAI recommends this as their best model even for non-chat use cases.  Other benefits of using the ChatGPT APIs are significant cost reduction (90%) and efficiency. 
 
 Big companies like Snap Inc. and Instacart are already integrating conversational features powered by ChatGPT on their products that range from personalized recommendations to open-ended shopping goals.
 
@@ -49,7 +49,7 @@ Big companies like Snap Inc. and Instacart are already integrating conversationa
 
 ### Multi-turn Conversations
 
-To begin demonstrating the capabilities of ChatGPT, we will use the chatbot assistant example above and discuss results. Compared to `text-davinci-003`, the `gpt-3.5-turbo` model that powers ChatGPT uses a chat format as input. The model expects a series of messages as input, and uses those to generate a response. 
+To begin demonstrating the capabilities of ChatGPT, we will use the chatbot assistant example above and discuss the results. Compared to `text-davinci-003`, the `gpt-3.5-turbo` model that powers ChatGPT uses a chat format as input. The model expects a series of messages as input and uses those to generate a response. 
 
 *Input:*
 ```
@@ -83,11 +83,11 @@ openai.ChatCompletion.create(
     ]
 )
 ```
-In fact, the way developers interact with ChatGPT in the future is expected to be done via the [Chat Markup Language](https://github.com/openai/openai-python/blob/main/chatml.md) (ChatML for short).
+The way developers interact with ChatGPT in the future is expected to be done via the [Chat Markup Language](https://github.com/openai/openai-python/blob/main/chatml.md) (ChatML for short).
 
 ### Single-turn tasks
 
-The chat format enables multi-turn conversations but it also supports single-turn tasks similar to what we used with `text-davinci-003`. This means we can use ChatGPT to perform similar tasks as what we have demonstrated for the original GPT models. For example, let's try to perform the following question answering task using ChatGPT:
+The chat format enables multi-turn conversations but it also supports single-turn tasks similar to what we used with `text-davinci-003`. This means we can use ChatGPT to perform similar tasks as what we have demonstrated for the original GPT models. For example, let's try to perform the following question-answering task using ChatGPT:
 
 *Input:*
 ```
@@ -147,6 +147,10 @@ The current recommendation for `gpt-3.5-turbo-0301` is to add instructions in th
 ---
 ## References
 
+- [Seeing ChatGPT Through Students' Eyes: An Analysis of TikTok Data](https://arxiv.org/abs/2303.05349) (March 2023)
+- [Extracting Accurate Materials Data from Research Papers with Conversational Language Models and Prompt Engineering -- Example of ChatGPT](https://arxiv.org/abs/2303.05352) (Mar 2023)
+- [ChatGPT is on the horizon: Could a large language model be all we need for Intelligent Transportation?](https://arxiv.org/abs/2303.05382) (Mar 2023)
+- [Making a Computational Attorney](https://arxiv.org/abs/2303.05383) (Mar 2023)
 - [Does Synthetic Data Generation of LLMs Help Clinical Text Mining?](https://arxiv.org/abs/2303.04360) (Mar 2023)
 - [MenuCraft: Interactive Menu System Design with Large Language Models](https://arxiv.org/abs/2303.04496) (Mar 2023)
 - [A Comprehensive Survey of AI-Generated Content (AIGC): A History of Generative AI from GAN to ChatGPT](https://arxiv.org/abs/2303.04226) (Mar 2023)
@@ -176,6 +180,7 @@ The current recommendation for `gpt-3.5-turbo-0301` is to add instructions in th
 - [ChatGPT versus Traditional Question Answering for Knowledge Graphs: Current Status and Future Directions Towards Knowledge Graph Chatbots](https://arxiv.org/abs/2302.06466) (Feb 2023)
 - [What ChatGPT and generative AI mean for science](https://www.nature.com/articles/d41586-023-00340-6) (Feb 2023)
 - [Applying BERT and ChatGPT for Sentiment Analysis of Lyme Disease in Scientific Literature](https://arxiv.org/abs/2302.06474) (Feb 2023)
+- [Exploring AI Ethics of ChatGPT: A Diagnostic Analysis](https://arxiv.org/abs/2301.12867) (Jan 2023)
 - [ChatGPT for Good? On Opportunities and Challenges of Large Language Models for Education](https://www.edu.sot.tum.de/fileadmin/w00bed/hctl/_my_direct_uploads/ChatGPT_for_Good_.pdf) (Jan 2023)
 - [The political ideology of conversational AI: Converging evidence on ChatGPT's pro-environmental, left-libertarian orientation](https://arxiv.org/abs/2301.01768) (Jan 2023)
 - [Techniques to improve reliability - OpenAI Cookbook](https://github.com/openai/openai-cookbook/blob/main/techniques_to_improve_reliability.md)
